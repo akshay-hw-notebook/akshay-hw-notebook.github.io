@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>Homework</title>
 <style>
 :root{--line:#c9d9ef;--margin:#e8a0a0;--ink:#26323f;--paper:#fffdf6;--h:30px}
@@ -54,8 +55,19 @@ input:checked+span{text-decoration:line-through;color:#8a95a0}
 </div>
 </div>
 <script>
-(function(){var k="hwNotebook",s={};try{s=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
-document.querySelectorAll("input").forEach(function(b){var id=b.dataset.k;b.checked=!!s[id];b.addEventListener("change",function(){s[id]=b.checked;try{localStorage.setItem(k,JSON.stringify(s))}catch(e){}})})})();
+(function(){
+var K="hwNotebook",s={};try{s=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function wire(){document.querySelectorAll("input[data-k]").forEach(function(b){var id=b.dataset.k;b.checked=!!s[id];b.onchange=function(){s[id]=b.checked;try{localStorage.setItem(K,JSON.stringify(s))}catch(e){}}})}
+function render(d){var h="";d.kids.forEach(function(kid){h+='<div class="col">\n<h2>'+esc(kid.name)+'</h2>';
+ if(!kid.groups.length)h+='<ul><li class="none">All done</li></ul>';
+ kid.groups.forEach(function(g){h+='<h3>'+esc(g.heading)+'</h3>\n<ul>';g.items.forEach(function(it){h+='<li><label><input type="checkbox" data-k="'+esc(kid.name+"|"+g.heading+"|"+it)+'"><span>'+esc(it)+'</span></label></li>'});h+='</ul>'});
+ h+='</div>'});document.querySelector(".cols").innerHTML=h;document.querySelector(".upd").textContent="Updated "+d.updated;wire()}
+function load(){fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d)render(d)}).catch(function(){})}
+wire();load();
+document.addEventListener("visibilitychange",function(){if(!document.hidden)load()});
+window.addEventListener("pageshow",function(e){if(e.persisted)load()});
+})();
 </script>
 </body>
 </html>
