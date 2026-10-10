@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Homework</title>
+<style>
+:root{--line:#c9d9ef;--margin:#e8a0a0;--ink:#26323f;--paper:#fffdf6;--h:30px}
+*{box-sizing:border-box}
+html,body{margin:0;background:#efe9dc}
+.page{max-width:820px;margin:16px auto;background:var(--paper);
+ background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--h) - 1px),var(--line) calc(var(--h) - 1px),var(--line) var(--h));
+ background-position:0 6px;box-shadow:0 2px 10px rgba(0,0,0,.12);border-radius:4px;position:relative;padding:6px 14px 30px 46px;
+ font:17px/var(--h) "Noteworthy","Bradley Hand","Segoe Print","Comic Sans MS",system-ui,sans-serif;color:var(--ink)}
+.page:before{content:"";position:absolute;top:0;bottom:0;left:34px;width:2px;background:var(--margin)}
+h1{font-size:26px;line-height:calc(var(--h)*2);margin:0;font-weight:700}
+.upd{font-size:13px;color:#8a95a0;float:right;line-height:calc(var(--h)*2)}
+.cols{display:grid;grid-template-columns:1fr 1fr}
+.col{padding-right:12px}
+.col+.col{border-left:2px solid #9fb3cc;padding-left:14px;padding-right:0}
+h2{font-size:21px;line-height:var(--h);margin:0 0 var(--h);font-weight:700}
+h3{font-size:15px;line-height:var(--h);margin:0;text-transform:uppercase;letter-spacing:.5px;color:#b0473b}
+ul{list-style:none;margin:0 0 var(--h);padding:0}
+li{line-height:var(--h)}
+label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+input{width:17px;height:17px;margin-top:6px;flex:none;accent-color:#2f5d46}
+input:checked+span{text-decoration:line-through;color:#8a95a0}
+.none{color:#8a95a0}
+@media(max-width:520px){.page{margin:0;border-radius:0;padding-left:30px;padding-right:8px;font-size:14.5px}.page:before{left:20px}h2{font-size:18px}h3{font-size:12.5px}.col{padding-right:6px}.col+.col{padding-left:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+<h1>Homework<span class="upd">Updated Sat 10 Oct</span></h1>
+<div class="cols">
+<div class="col">
+<h2>Eva</h2>
+<h3>Mon 12 Oct</h3>
+<ul>
+<li><label><input type="checkbox" data-k="Eva|Mon 12 Oct|SS R19, 20, 21, 22, 23, 24AB"><span>SS R19, 20, 21, 22, 23, 24AB</span></label></li>
+<li><label><input type="checkbox" data-k="Eva|Mon 12 Oct|Hindi RWSH-5"><span>Hindi RWSH-5</span></label></li>
+<li><label><input type="checkbox" data-k="Eva|Mon 12 Oct|Kannada RWSH-5 pg 8"><span>Kannada RWSH-5 pg 8</span></label></li>
+<li><label><input type="checkbox" data-k="Eva|Mon 12 Oct|Word Wise sheet 7 (submit book, don&#x27;t tear)"><span>Word Wise sheet 7 (submit book, don&#x27;t tear)</span></label></li>
+</ul>
+<h3>Open from Fri</h3>
+<ul>
+<li><label><input type="checkbox" data-k="Eva|Open from Fri|Math R35, 38, 39, 40, 41, 42"><span>Math R35, 38, 39, 40, 41, 42</span></label></li>
+</ul>
+</div>
+<div class="col">
+<h2>Mishika</h2>
+<h3>Mon 12 Oct</h3>
+<ul>
+<li><label><input type="checkbox" data-k="Mishika|Mon 12 Oct|English R14 A&amp;B, 15, 16"><span>English R14 A&amp;B, 15, 16</span></label></li>
+<li><label><input type="checkbox" data-k="Mishika|Mon 12 Oct|Hindi R3"><span>Hindi R3</span></label></li>
+<li><label><input type="checkbox" data-k="Mishika|Mon 12 Oct|Math R44AB"><span>Math R44AB</span></label></li>
+<li><label><input type="checkbox" data-k="Mishika|Mon 12 Oct|SS R17A, B"><span>SS R17A, B</span></label></li>
+</ul>
+<h3>Open from Fri</h3>
+<ul>
+<li><label><input type="checkbox" data-k="Mishika|Open from Fri|Math R43AB"><span>Math R43AB</span></label></li>
+</ul>
+</div>
+</div>
+</div>
+<script>
+(function(){var k="hwNotebook",s={};try{s=JSON.parse(localStorage.getItem(k))||{}}catch(e){}
+document.querySelectorAll("input").forEach(function(b){var id=b.dataset.k;b.checked=!!s[id];b.addEventListener("change",function(){s[id]=b.checked;try{localStorage.setItem(k,JSON.stringify(s))}catch(e){}})})})();
+</script>
+</body>
+</html>
